@@ -5,10 +5,14 @@ import allure
 sys.path.append(os.getcwd())
 
 from base.base_driver import init_driver_calculator
-from base.base_data import get_data_yml
+from base.base_data import get_yml_data_with_filename_key
 from time import sleep
 import pytest
 from page.demo_page import Demo_page
+
+def data_with_key(key):
+    return get_yml_data_with_filename_key('data', key)
+
 
 class Test_demo:
     def setup_class(self):
@@ -25,9 +29,12 @@ class Test_demo:
     # 设置预言失败为False
     @pytest.mark.xfail(False, reason="")
     # 参数化
-    @pytest.mark.parametrize(["num1", "ysf", "num2", "zhi"], get_data_yml())
-    def test_demo(self,num1, ysf, num2, zhi):
-        # 运算8*6
+    @pytest.mark.parametrize("args", data_with_key('test_demo'))
+    def test_demo(self,args):
+        num1 = args["num1"]
+        ysf = args["ysf"]
+        num2 = args["num2"]
+        zhi = args["zhi"]
         allure.attach("测试运算是否正确", "测试")
         self.demo_page.yunsuan(num1, ysf, num2)
         self.demo_page.assertin_jieguo(zhi)

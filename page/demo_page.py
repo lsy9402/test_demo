@@ -5,6 +5,8 @@ from base.base_action import Base_action
 
 
 class Demo_page(Base_action):
+    def __init__(self,driver):
+        Base_action.__init__(self, driver)
     # 运算按钮
     def yunsuanfu(self, ysf):
         if ysf == '+':
