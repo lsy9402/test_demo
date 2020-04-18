@@ -16,6 +16,6 @@ test_demo:
     zhi: 2
   test_demo_004:
     num1: 8
-    ysf: "*"
+    ysf: "/"
     num2: 2
     zhi: 4
