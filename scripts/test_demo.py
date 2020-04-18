@@ -36,7 +36,6 @@ class Test_demo:
         num2 = args["num2"]
         zhi = args["zhi"]
         allure.attach("测试运算是否正确", "测试")
-        allure.attach(open("./screen/demo.png", "rb").read(), "图片", allure.attachment_type.PNG)
         self.demo_page.yunsuan(num1, ysf, num2)
         self.demo_page.assertin_jieguo(zhi)
 

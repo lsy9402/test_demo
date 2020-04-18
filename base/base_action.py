@@ -1,4 +1,6 @@
 import time
+
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 class Base_action:
@@ -23,7 +25,10 @@ class Base_action:
         except AssertionError:
             # 设置时间
             now_time = time.strftime('%Y-%m-%d_%H:%M:%S')
+            # 截图
             self.screenshot(screen + now_time)
+            # 上传图片到报告
+            allure.attach(open("./screen/" + screen + now_time + ".png", "rb").read(), "失败截图", allure.attachment_type.PNG)
             # print("预期结果为：%s  实际结果为%s" % (expected, actual))
             raise AssertionError
 
