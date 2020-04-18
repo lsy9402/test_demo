@@ -37,6 +37,7 @@ class Test_demo:
         zhi = args["zhi"]
         allure.attach("测试运算是否正确", "测试")
         self.demo_page.yunsuan(num1, ysf, num2)
+        self.demo_page.screenshot("demo")
         self.demo_page.assertin_jieguo(zhi)
 
 if __name__ == '__main__':

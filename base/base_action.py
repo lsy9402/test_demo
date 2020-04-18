@@ -1,3 +1,4 @@
+import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 class Base_action:
@@ -16,10 +17,13 @@ class Base_action:
 
     def quit(self):
         self.driver.quit()
-    def assertin(self, expected, actual):
+    def assertin(self, expected, actual, screen = "AssertionError"):
         try:
             assert expected in actual
         except AssertionError:
+            # 设置时间
+            now_time = time.strftime('%Y-%m-%d_%H:%M:%S')
+            self.screenshot(screen + now_time)
             print("预期结果为：%s  实际结果为%s" % (expected, actual))
             raise AssertionError
 
@@ -48,3 +52,5 @@ class Base_action:
             else:
                 feature = "@" + loc
                 return feature_start + feature + feature_end
+    def screenshot(self, file_name):
+        self.driver.get_screenshot_as_file("./screen/" + file_name + ".png")
