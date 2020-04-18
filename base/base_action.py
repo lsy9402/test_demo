@@ -24,7 +24,7 @@ class Base_action:
             # 设置时间
             now_time = time.strftime('%Y-%m-%d_%H:%M:%S')
             self.screenshot(screen + now_time)
-            print("预期结果为：%s  实际结果为%s" % (expected, actual))
+            # print("预期结果为：%s  实际结果为%s" % (expected, actual))
             raise AssertionError
 
 
